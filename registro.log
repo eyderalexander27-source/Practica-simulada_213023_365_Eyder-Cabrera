@@ -1,0 +1,88 @@
+2026-11-19 18:33:44 | INFO     | ============================================================ INICIO DE SIMULACIÓN DE OPERACIONES
+2026-11-19 18:33:44 | INFO     | Cliente registrado: Cliente(id=1001, nombre=Ana Gómez, email=ana.gomez@email.com, telefono=3001234567, reservas=0)
+2026-11-19 18:33:44 | ERROR    | No se pudo registrar el cliente 'Luis Pérez' (id=1002) | Excepción: [ERR_DATO_INVALIDO] El email 'luis.email-incorrecto' no tiene un formato válido. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 777, in registrar_cliente
+    cliente = Cliente(identificacion, nombre, email, telefono)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 198, in __init__
+    self.email = email
+    ^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 215, in email
+    raise DatoInvalidoError(
+DatoInvalidoError: [ERR_DATO_INVALIDO] El email 'luis.email-incorrecto' no tiene un formato válido.
+2026-11-19 18:33:44 | ERROR    | No se pudo registrar el cliente 'Marta Ruiz' (id=1003) | Excepción: [ERR_DATO_INVALIDO] El teléfono '300ABC567' solo puede contener dígitos. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 777, in registrar_cliente
+    cliente = Cliente(identificacion, nombre, email, telefono)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 199, in __init__
+    self.telefono = telefono
+    ^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 229, in telefono
+    raise DatoInvalidoError(
+DatoInvalidoError: [ERR_DATO_INVALIDO] El teléfono '300ABC567' solo puede contener dígitos.
+2026-11-19 18:33:44 | INFO     | Cliente registrado: Cliente(id=1004, nombre=Carlos Díaz, email=carlos.diaz@email.com, telefono=3119876543, reservas=0)
+2026-11-19 18:33:44 | INFO     | Servicio registrado: ReservaSalas(codigo=SAL-001, nombre=Sala de reuniones A, tarifa_hora=50000.0, capacidad=10)
+2026-11-19 18:33:44 | ERROR    | Fallo al crear la sala sin capacidad | Excepción: [ERR_PARAMETRO_FALTANTE] La capacidad de la sala es obligatoria. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 917, in simular_operaciones
+    sala_mala = ReservaSalas("SAL-002", "Sala B", tarifa_base=40000,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 468, in __init__
+    raise ParametroFaltanteError(
+ParametroFaltanteError: [ERR_PARAMETRO_FALTANTE] La capacidad de la sala es obligatoria.
+2026-11-19 18:33:44 | INFO     | Servicio registrado: AlquilerEquipos(codigo=ALQ-001, nombre=Proyector Full HD, tarifa_dia=25000.0, deposito=100000.0)
+2026-11-19 18:33:44 | ERROR    | Fallo al crear asesoría con nivel inválido | Excepción: [ERR_DATO_INVALIDO] El nivel 'experto' no es válido. Opciones: junior, semisenior, senior. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 935, in simular_operaciones
+    asesoria_mala = AsesoriaEspecializada("ASE-000", "Asesoría Python",
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 556, in __init__
+    raise DatoInvalidoError(
+DatoInvalidoError: [ERR_DATO_INVALIDO] El nivel 'experto' no es válido. Opciones: junior, semisenior, senior.
+2026-11-19 18:33:44 | INFO     | Servicio registrado: AsesoriaEspecializada(codigo=ASE-001, nombre=Asesoría en Python, area=Desarrollo de software, nivel=senior, tarifa_hora=80000.0, factor=1.75)
+2026-11-19 18:33:44 | INFO     | Reserva RES-001 procesada. Cliente=Ana Gómez, Servicio=Sala de reuniones A, Costo=$160650.0
+2026-11-19 18:33:44 | INFO     | Fin del flujo de procesamiento de la reserva RES-001 (estado final: FINALIZADA)
+2026-11-19 18:33:44 | INFO     | Servicio registrado: ReservaSalas(codigo=SAL-099, nombre=Sala en mantenimiento, tarifa_hora=30000.0, capacidad=5)
+2026-11-19 18:33:44 | ERROR    | Fallo la creación/procesamiento de la reserva RES-002 | Excepción: [ERR_SERVICIO_NO_DISPONIBLE] El servicio 'Sala en mantenimiento' no está disponible para confirmar la reserva RES-002. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 843, in crear_reserva
+    reserva.confirmar()
+  File "/tmp/final_eyder/Actividad.py", line 683, in confirmar
+    raise ServicioNoDisponibleError(
+ServicioNoDisponibleError: [ERR_SERVICIO_NO_DISPONIBLE] El servicio 'Sala en mantenimiento' no está disponible para confirmar la reserva RES-002.
+2026-11-19 18:33:44 | ERROR    | Fallo la creación/procesamiento de la reserva RES-003 | Excepción: [ERR_CLIENTE_NO_ENCONTRADO] El cliente con id '9999' no está registrado. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 839, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 823, in buscar_cliente
+    raise ClienteNoEncontradoError(
+ClienteNoEncontradoError: [ERR_CLIENTE_NO_ENCONTRADO] El cliente con id '9999' no está registrado.
+2026-11-19 18:33:44 | INFO     | Fin del flujo de procesamiento de la reserva RES-004 (estado final: CONFIRMADA)
+2026-11-19 18:33:44 | ERROR    | Fallo la creación/procesamiento de la reserva RES-004 | Excepción: [ERR_DATO_INVALIDO] El alquiler de equipos se factura por días enteros. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 844, in crear_reserva
+    reserva.procesar(logger=self.logger)
+  File "/tmp/final_eyder/Actividad.py", line 718, in procesar
+    costo = self._servicio.calcular_costo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/final_eyder/Actividad.py", line 424, in calcular_costo
+    self.validar_parametros(duracion, **kwargs)
+  File "/tmp/final_eyder/Actividad.py", line 519, in validar_parametros
+    raise DatoInvalidoError(
+DatoInvalidoError: [ERR_DATO_INVALIDO] El alquiler de equipos se factura por días enteros.
+2026-11-19 18:33:44 | INFO     | Reserva RES-005 procesada. Cliente=Carlos Díaz, Servicio=Proyector Full HD, Costo=$231250.0
+2026-11-19 18:33:44 | INFO     | Fin del flujo de procesamiento de la reserva RES-005 (estado final: FINALIZADA)
+2026-11-19 18:33:44 | INFO     | Reserva RES-006 procesada. Cliente=Ana Gómez, Servicio=Asesoría en Python, Costo=$666400.0
+2026-11-19 18:33:44 | INFO     | Fin del flujo de procesamiento de la reserva RES-006 (estado final: FINALIZADA)
+2026-11-19 18:33:44 | ERROR    | Fallo al cancelar reserva finalizada | Excepción: [ERR_OPERACION_NO_PERMITIDA] La reserva RES-001 ya está finalizada y no se puede cancelar. | Traza:
+Traceback (most recent call last):
+  File "/tmp/final_eyder/Actividad.py", line 991, in simular_operaciones
+    reserva_finalizada.cancelar()
+  File "/tmp/final_eyder/Actividad.py", line 691, in cancelar
+    raise OperacionNoPermitidaError(
+OperacionNoPermitidaError: [ERR_OPERACION_NO_PERMITIDA] La reserva RES-001 ya está finalizada y no se puede cancelar.
+2026-11-19 18:33:44 | INFO     | Sobrecarga calcular_costo: base=119000.0, imp5=105000.0, desc20=95200.0, total_extras=127000.0
+2026-11-19 18:33:44 | INFO     | ============================================================ FIN DE SIMULACIÓN DE OPERACIONES
